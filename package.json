@@ -9,6 +9,9 @@
   "author": "Aki",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "body": "^5.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "parser": "^0.1.4"
   }
 }
