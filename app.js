@@ -3,6 +3,7 @@ const express = require("express");
 const app =express();
 const bodyParser = require("body-parser");
 const ejs =require("ejs");
+const request =require("request"); //api request
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
@@ -27,6 +28,19 @@ friends.push(newFriend);
 app.get("/friendsList", function(req,res){
 res.render("friends", {friends:friends}); //value on the left goes to ejs file value on the right goes to app.js
 });
+
+
+//api request test 
+request("https://jsonplaceholder.typicode.com/todos/1",function(error, response, body){
+  if(!error && response.statusCode==200){
+    // console.log(error);
+    // console.log("smth went wrong");
+
+    const userData=JSON.parse(body);
+    console.log(userData["title"]);
+  }
+});
+
 
 
 // app.get("/", function(req,res){
