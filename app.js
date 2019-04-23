@@ -30,16 +30,36 @@ res.render("friends", {friends:friends}); //value on the left goes to ejs file v
 });
 
 
-//api request test 
-request("https://jsonplaceholder.typicode.com/todos/1",function(error, response, body){
-  if(!error && response.statusCode==200){
-    // console.log(error);
-    // console.log("smth went wrong");
+//api request test
+// request("https://jsonplaceholder.typicode.com/todos/1",function(error, response, body){
+//   if(!error && response.statusCode==200){
+//     // console.log(error);
+//     // console.log("smth went wrong");
+//
+//     const userData=JSON.parse(body);
+//     console.log(userData.title);
+//   }
+// });
 
-    const userData=JSON.parse(body);
-    console.log(userData["title"]);
-  }
+
+
+// request movie api for testing purposes
+app.get("/movies", function(req, res){
+      const search = req.query.search;
+      const url = "http://www.omdbapi.com/?s="+ search+"&apikey=thewdb";
+  request(url, function(err, response, body){
+    if(!err && response.statusCode==200){
+      const data=JSON.parse(body);
+      res.render("movieResults", {data:data});
+      // res.send(userData);
+    }else if (err){
+      res.render("OOOPS go back and search again");
+    }
+  });
 });
+
+
+
 
 
 
